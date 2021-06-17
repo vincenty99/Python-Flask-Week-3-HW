@@ -1,6 +1,3 @@
-#Week 3 HW
-#We are going to us flask: https://flask.palletsprojects.com/en/2.0.x/
-
 from flask import Flask, render_template, request
 #import the flask module - this is our web server
 
@@ -14,7 +11,6 @@ app = Flask(
   static_folder='static'
 )
 
-
 # Here we have all of our routes... These are the url endpoints that are associated with different functions.  By default they process GET requests
 
 
@@ -23,20 +19,22 @@ def hello_world():
     return render_template('base.html') #this returns the base.html template in the template directory
 
 
-@app.route("/New York Jets", methods=['POST'])# here we explicitly call the type of webrequest this manages - A post - a post sends data with the request - it is supposed to be more secure
-def go_shopping():
+@app.route("/newestjets", methods=['POST'])# here we explicitly call the type of webrequest this manages - A post - a post sends data with the request - it is supposed to be more secure
+def newest_jets():
     data = request.form['email'] #this is how we pull form data from a post request
     #details ={name:"sdd",difficulty:'""',img:""}
     #cocktails = [{name:"",picture:""},{name:"",picture:""},]
-    return render_template('nyjet.html',
+    return render_template('nyjets.html',
       email=data, #this is how we include dynamic data with our webpage
-      something="This is the 2021 NY Jet Draft Class!")
+      something="2021 Draft Class!")
 
-
+@app.route("/Jets")
+def player():
+    return "Welcome Zach Wilson, Alijah Vera-Tucker,  Elijah Moore, Michael Carter, Jamien Sherwood,  Michael Carter, Jason Pinnock , Hamsah Nasirildeen, Brandin Echols and Jonathan Marshall"
 
 
 if __name__ == "__main__": 
-	app.run( 
-		host='0.0.0.0', 
-		port=5565
-	) #THIS STARTS THE WEBSERVER
+  app.run( 
+    host='0.0.0.0', 
+    port=5565
+  ) #THIS STARTS THE WEBSERVER
